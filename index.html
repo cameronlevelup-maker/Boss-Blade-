@@ -1,497 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Boss & Blade – Game Guides</title>
-  <meta name="description" content="Boss & Blade: Guides, walkthroughs, characters, and patch notes for Assassin's Creed, Jedi series, and other open‑world RPGs." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0b0d10; --panel:#12151a; --panel-2:#1a1f27; --text:#e7eef8; --muted:#a7b3c4; --brand:#e6b400; --brand-2:#3da9fc; --ok:#22c55e; --warn:#f59e0b;
-      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Segoe UI Emoji,Segoe UI Symbol,sans-serif}
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{max-width:1200px;margin-inline:auto;padding:24px}
-
-    /* Header */
-    header{position:sticky;top:0;z-index:50;background:rgba(11,13,16,.8);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid #1f2630}
-    .nav{display:flex;align-items:center;gap:16px;padding:14px 24px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
-    .brand .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#ff6a00 60%);display:grid;place-items:center;box-shadow:var(--shadow)}
-    .brand .logo span{font-weight:900;color:#0a0a0a}
-    .navlinks{display:flex;gap:10px;flex-wrap:wrap}
-    .navlinks a{padding:8px 12px;border-radius:12px;color:var(--muted)}
-    .navlinks a.active,.navlinks a:hover{background:var(--panel-2);color:var(--text)}
-    .spacer{flex:1}
-    .search{position:relative;max-width:380px;flex:1}
-    .search input{width:100%;padding:10px 12px 10px 40px;border-radius:12px;border:1px solid #2a3342;background:var(--panel-2);color:var(--text)}
-    .search .icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:.7}
-
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;padding-block:28px}
-    .card{background:var(--panel);border:1px solid #1e2430;border-radius:var(--radius);box-shadow:var(--shadow)}
-    .card.pad{padding:24px}
-    .badge{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;background:#1f2430;color:#cdd7e6;font-weight:600;font-size:12px;border:1px solid #2b3342}
-    .hero h1{font-size:34px;margin:14px 0 6px}
-    .hero p{color:var(--muted);margin:0}
-
-    /* Grids */
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
-    .col-4{grid-column:span 4}
-    .col-6{grid-column:span 6}
-    .col-8{grid-column:span 8}
-    .col-12{grid-column:span 12}
-
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:repeat(6,1fr)}
-      .col-4{grid-column:span 6}
-      .col-6{grid-column:span 6}
-      .col-8{grid-column:span 6}
-      .col-12{grid-column:span 6}
-    }
-
-    .pill{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;border:1px solid #2a3342;background:var(--panel-2);color:#d7e2f2;font-size:12px;font-weight:600}
-    .pill .dot{width:8px;height:8px;border-radius:50%;margin-right:8px;background:var(--brand)}
-
-    /* Cards */
-    .game-card{display:flex;flex-direction:column;gap:10px;padding:16px}
-    .game-card h3{margin:0;font-size:18px}
-    .meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:12px}
-    .actions{display:flex;gap:10px;margin-top:6px}
-    .btn{padding:10px 12px;border-radius:12px;background:linear-gradient(180deg,#232a36,#161b24);border:1px solid #2a3342;color:#eaf2ff;font-weight:600}
-    .btn:hover{filter:brightness(1.05)}
-
-    /* Content area */
-    main{margin-top:16px}
-    .layout{display:grid;grid-template-columns:280px 1fr;gap:16px}
-    .sidebar{position:sticky;top:78px;align-self:start}
-    .sidebar .section{background:var(--panel);border:1px solid #1e2430;border-radius:var(--radius);padding:16px}
-    .sidebar h4{margin:0 0 10px}
-    .toc a{display:block;padding:6px 8px;border-radius:8px;color:#c8d3e6}
-    .toc a:hover,.toc a.active{background:var(--panel-2)}
-
-    .content{background:var(--panel);border:1px solid #1e2430;border-radius:var(--radius);padding:18px}
-    article h1{margin-top:0}
-    article h2{margin-top:24px}
-    .callout{padding:12px 14px;border-left:4px solid var(--brand);background:#181e28;border-radius:12px}
-
-    /* Footer */
-    footer{margin-top:28px;padding:24px;border-top:1px solid #1f2630;color:#9fb0c8}
-
-    /* Hide views by default */
-    [data-view]{display:none}
-    [data-view].active{display:block}
-
-    .kicker{font-size:12px;color:#9fb0c8;margin:0}
-  </style>
-</head>
-<body>
-  <header>
-    <div class="nav container">
-      <a class="brand" href="#/home" data-link>
-       <div class="logo">
-<!DOCTYPE html>
-<html lang="en">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Logo</title>
+    <title>Boss&Blade</title>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
-        <img src="new-logo.png" alt="Boss & Blade Logo" />
-    </div>
-</body>
-</html>
-
-
-
-
-
-
-      </a>
-      <nav class="navlinks">
-        <a href="#/home" data-link class="active">Home</a>
-        <a href="#/guides" data-link>Game Guides</a>
-        <a href="#/updates" data-link>Updates</a>
-        <a href="#/about" data-link>About</a>
-      </nav>
-      <div class="spacer"></div>
-      <div class="search">
-        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input id="searchInput" type="search" placeholder="Search guides, missions, characters…" />
-      </div>
-    </div>
-  </header>
-
-  <div class="container">
-    <!-- HOME VIEW -->
-    <section data-view id="view-home" class="active">
-      <div class="hero">
-        <div class="card pad">
-          <span class="badge">Multi‑Game RPG Guides</span>
-          <h1>Welcome to Boss & Blade</h1>
-          <p>Your hub for deep‑dive walkthroughs, side missions, character bios, and patch notes for Assassin’s Creed, Jedi series, and other open‑world RPGs.</p>
-          <div class="actions" style="margin-top:14px">
-            <a class="btn" href="#/guides">Browse Game Guides</a>
-            <a class="btn" href="#/updates">Latest Updates</a>
-          </div>
+    <!-- Header / Navbar -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Boss&Blade Logo">
         </div>
-        <div class="card pad">
-          <p class="kicker">Featured</p>
-          <div class="grid">
-            <div class="col-6">
-              <div class="card game-card" style="background:linear-gradient(180deg,#202734,#151a23);">
-                <div class="pill"><span class="dot" style="background:var(--brand)"></span>Assassin’s Creed</div>
-                <h3>Origins: Prologue Walkthrough</h3>
-                <div class="meta"><span>Main Story</span><span>Est. 15 min</span></div>
-                <div class="actions"><a class="btn" href="#/guide/ac-origins-prologue">Read</a></div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="card game-card" style="background:linear-gradient(180deg,#1f2533,#141922);">
-                <div class="pill"><span class="dot" style="background:var(--brand-2)"></span>Jedi Series</div>
-                <h3>Fallen Order: Bogano Secrets</h3>
-                <div class="meta"><span>Side Mission</span><span>Est. 20 min</span></div>
-                <div class="actions"><a class="btn" href="#/guide/jedi-bogano-secrets">Read</a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-      <div class="grid">
-        <div class="col-12">
-          <div class="card pad">
-            <h2>Quick Picks</h2>
-            <div id="quickGrid" class="grid"></div>
-          </div>
-        </div>
-      </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Welcome to Boss&Blade</h1>
+        <p>Your ultimate gaming content destination!</p>
+        <a href="#videos" class="btn">Watch Videos</a>
     </section>
 
-    <!-- GUIDES VIEW -->
-    <section data-view id="view-guides">
-      <div class="layout">
-        <aside class="sidebar">
-          <div class="section">
-            <h4>Series</h4>
-            <div class="toc" id="seriesList"></div>
-          </div>
-          <div class="section" style="margin-top:12px">
-            <h4>Filters</h4>
-            <div class="toc">
-              <a href="#" data-filter-type>All Types</a>
-              <a href="#" data-filter-type="Main Story">Main Story</a>
-              <a href="#" data-filter-type="Side Mission">Side Missions</a>
-              <a href="#" data-filter-type="Character">Characters</a>
-              <a href="#" data-filter-type="Guide">General Guides</a>
-            </div>
-          </div>
-        </aside>
-        <div class="content">
-          <article>
-            <h1>Game Guides</h1>
-            <p class="kicker">Browse by series, game, or category. Use the search to jump straight to a mission.</p>
-            <div id="guidesList" class="grid" style="margin-top:12px"></div>
-          </article>
+    <!-- Videos Section -->
+    <section id="videos" class="videos">
+        <h2>Latest Videos</h2>
+        <div class="video-grid">
+            <!-- YouTube Embed Example -->
+            <iframe width="300" height="170" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+            title="YouTube video" frameborder="0" allowfullscreen></iframe>
+
+            <iframe width="300" height="170" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+            title="YouTube video" frameborder="0" allowfullscreen></iframe>
         </div>
-      </div>
     </section>
 
-    <!-- GUIDE DETAIL VIEW (dynamic) -->
-    <section data-view id="view-guide-detail">
-      <div class="layout">
-        <aside class="sidebar">
-          <div class="section">
-            <h4>On this page</h4>
-            <div id="tocCurrent" class="toc"></div>
-          </div>
-          <div class="section" style="margin-top:12px">
-            <h4>Related</h4>
-            <div id="relatedList" class="toc"></div>
-          </div>
-        </aside>
-        <div class="content">
-          <article id="guideArticle"></article>
-        </div>
-      </div>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Boss&Blade</h2>
+        <p>Boss&Blade is a gaming channel where we share epic gameplay, tutorials, and tips!</p>
     </section>
 
-    <!-- UPDATES VIEW -->
-    <section data-view id="view-updates">
-      <div class="content">
-        <article>
-          <h1>Updates & Patch Notes</h1>
-          <p class="kicker">Versioned changes, balance tweaks, and new content across supported games.</p>
-          <div id="updatesFeed" class="grid" style="margin-top:12px"></div>
-        </article>
-      </div>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Contact</h2>
+        <p>Email: contact@bossandblade.com</p>
+        <p>Follow us on social media!</p>
     </section>
 
-    <!-- ABOUT VIEW -->
-    <section data-view id="view-about">
-      <div class="content">
-        <article>
-          <h1>Boss & Blade</h1>
-          <p>Founded in 2025 - Boss & Blade is a community driven hub, used to assist all gamers in character lore, collectibles, build guides, side missions and main story quests across many open world RPG games, which includes Assassin's Creed, Jedi:Fallen Order, Jedi:Survivor, amongst many, many more.
-        </article>
-      </div>
-    </section>
-  </div>
-
-  <footer class="container">
-    © <span id="year"></span> Boss & Blade 
-  </footer>
-
-  <script>
-    // --- Data (replace/extend as you build) ---
-    const DATA = {
-      series: [
-        { id: 'ac', name: "Assassin's Creed", accent: 'var(--brand)' },
-        { id: 'jedi', name: 'Jedi Series', accent: 'var(--brand-2)' },
-        { id: 'rpg', name: 'Other RPGs', accent: '#8b5cf6' }
-      ],
-      guides: [
-        // Assassin's Creed examples
-        { id:'ac-origins-prologue', series:'ac', game:'Origins', type:'Main Story', time:'15 min', title:'Prologue Walkthrough', summary:'Learn traversal, stealth, and your first assassination with Bayek.', content: `
-          <h1>Origins – Prologue Walkthrough</h1>
-          <p><strong>Series:</strong> Assassin's Creed · <strong>Game:</strong> Origins · <strong>Type:</strong> Main Story</p>
-          <h2 id="prep">Preparation</h2>
-          <ul><li>Set HUD to Minimal for clearer tracking.</li><li>Enable Subtitles.</li></ul>
-          <h2 id="objectives">Objectives</h2>
-          <ol><li>Follow Hepzefa to Siwa.</li><li>Use Senu to tag targets.</li><li>Assassinate Medunamun.</li></ol>
-          <h2 id="tips">Tips</h2>
-          <p>Use <em>overpower</em> on shielded enemies. Bow headshots stagger captains.</p>
-          <h2 id="rewards">Rewards</h2>
-          <ul><li>800 XP</li><li>Rare Hunter Bow</li></ul>
-        `},
-        { id:'ac-origins-side-bandit-camp', series:'ac', game:'Origins', type:'Side Mission', time:'12 min', title:'Side: Bandit Camp Clean‑Up', summary:'Free the prisoners and loot the captain’s chest in Saqqara.', content:`
-          <h1>Side Mission – Bandit Camp Clean‑Up</h1>
-          <p><strong>Location:</strong> Saqqara Nome · <strong>Recommended:</strong> Level 12</p>
-          <h2 id="scan">Scout</h2>
-          <p>Use Senu to mark archers on towers first.</p>
-          <h2 id="stealth">Stealth Route</h2>
-          <p>Approach from the east dunes at dusk for fewer patrols.</p>
-          <h2 id="loot">Rewards</h2>
-          <ul><li>450 XP</li><li>Iron x120</li></ul>
-        `},
-
-        // Jedi examples
-        { id:'jedi-bogano-secrets', series:'jedi', game:'Fallen Order', type:'Side Mission', time:'20 min', title:'Bogano Secrets & Chests', summary:'All stim canister upgrades and hidden chests on Bogano.', content:`
-          <h1>Bogano – Secrets & Chests</h1>
-          <p><strong>Series:</strong> Jedi · <strong>Game:</strong> Fallen Order · <strong>Type:</strong> Side Mission</p>
-          <h2 id="route">Optimal Route</h2>
-          <p>Start at Mantis landing, unlock shortcut by the Binog hollow.</p>
-          <h2 id="collectibles">Collectibles</h2>
-          <ul><li>Stim Canister (+1)</li><li>3x BD‑1 Skins</li><li>2x Lightsaber Switches</li></ul>
-          <h2 id="combat">Combat Tips</h2>
-          <p>Parry Oggdo tongue lunge; use Slow to create punish windows.</p>
-        `},
-        { id:'jedi-survivor-builds-stance', series:'jedi', game:'Survivor', type:'Guide', time:'10 min', title:'Best Early‑Game Stance Builds', summary:'Balanced stances for story difficulty and early bosses.', content:`
-          <h1>Best Early‑Game Stance Builds</h1>
-          <p>Focus on Double‑Bladed for crowd control; swap to Crossguard for single‑target burst.</p>
-          <h2 id="skills">Key Skills</h2>
-          <ul><li>Gathering Tempest</li><li>Precision Release</li></ul>
-        `},
-
-        // Other RPGs example
-        { id:'ghost-tsushima-legend-ronin', series:'rpg', game:'Ghost of Tsushima', type:'Character', time:'5 min', title:'Legend: The Ronin', summary:'Backstory and techniques of Ryuzo and the Ronin path.', content:`
-          <h1>Character Bio – The Ronin</h1>
-          <p>Origins, allegiances, and stance synergies for bleed builds.</p>
-          <h2 id="lore">Lore</h2>
-          <p>Once allies to Jin, the Ronin turn under Khan’s pressure…</p>
-        `}
-      ],
-      updates: [
-        { id:'upd-001', date:'2025-08-01', series:'ac', game:'Origins', version:'Guide v1.0', title:'Added Prologue & Bandit Camp guides', notes:['New spoiler‑smart headings','Added stealth route maps (text placeholders)'] },
-        { id:'upd-002', date:'2025-08-10', series:'jedi', game:'Fallen Order', version:'Guide v1.1', title:'Bogano collectibles updated', notes:['Corrected stim location','Route optimized around rope swing'] },
-        { id:'upd-003', date:'2025-08-12', series:'rpg', game:'Ghost of Tsushima', version:'Guide v0.3', title:'Ronin character bio', notes:['Added lore section','Early bleed build tips'] }
-      ]
-    };
-
-    // --- Simple client‑side router ---
-    const views = {
-      home: document.getElementById('view-home'),
-      guides: document.getElementById('view-guides'),
-      guideDetail: document.getElementById('view-guide-detail'),
-      updates: document.getElementById('view-updates'),
-      about: document.getElementById('view-about')
-    };
-
-    function setActiveNav(path){
-      document.querySelectorAll('[data-link]').forEach(a=>a.classList.remove('active'));
-      const link = document.querySelector(`[href="#/${path}"]`);
-      if(link) link.classList.add('active');
-    }
-
-    function show(view){
-      Object.values(views).forEach(v=>v.classList.remove('active'));
-      views[view].classList.add('active');
-      window.scrollTo({top:0,behavior:'instant'});
-    }
-
-    function route(){
-      const hash = location.hash.replace('#/','') || 'home';
-      setActiveNav(hash.split('/')[0]);
-      if(hash.startsWith('home')){ show('home'); }
-      else if(hash.startsWith('guides')){ renderGuides(); show('guides'); }
-      else if(hash.startsWith('guide/')){ const id = hash.split('/')[1]; renderGuide(id); show('guideDetail'); }
-      else if(hash.startsWith('updates')){ renderUpdates(); show('updates'); }
-      else if(hash.startsWith('about')){ show('about'); }
-      else { show('home'); }
-    }
-
-    window.addEventListener('hashchange', route);
-
-    // --- Populate series list ---
-    function renderSeries(){
-      const el = document.getElementById('seriesList');
-      el.innerHTML = '';
-      DATA.series.forEach(s=>{
-        const a = document.createElement('a');
-        a.textContent = s.name; a.href = '#';
-        a.onclick = (e)=>{e.preventDefault(); renderGuides({series:s.id});}
-        el.appendChild(a);
-      });
-    }
-
-    // --- Render guides grid with optional filters ---
-    function renderGuides(filter={}){
-      const list = document.getElementById('guidesList');
-      const q = (document.getElementById('searchInput').value || '').toLowerCase();
-      const typeFilter = document.querySelector('[data-filter-type].active')?.getAttribute('data-filter-type') || filter.type || null;
-      const seriesFilter = filter.series || null;
-
-      // Mark active filter buttons
-      document.querySelectorAll('[data-filter-type]').forEach(a=>a.classList.remove('active'));
-      if(typeFilter){
-        const btn = document.querySelector(`[data-filter-type="${typeFilter}"]`);
-        if(btn) btn.classList.add('active');
-      } else {
-        const btn = document.querySelector('[data-filter-type]:not([data-filter-type])');
-      }
-
-      const guides = DATA.guides.filter(g=>{
-        const matchQ = !q || [g.title,g.summary,g.game,g.type].join(' ').toLowerCase().includes(q);
-        const matchType = !typeFilter || g.type===typeFilter;
-        const matchSeries = !seriesFilter || g.series===seriesFilter;
-        return matchQ && matchType && matchSeries;
-      });
-
-      list.innerHTML = '';
-      if(guides.length===0){
-        list.innerHTML = '<div class="col-12"><div class="callout">No results. Try a different search or filter.</div></div>';
-        return;
-      }
-
-      guides.forEach(g=>{
-        const col = document.createElement('div'); col.className='col-4';
-        const card = document.createElement('div'); card.className='card game-card';
-        card.innerHTML = `
-          <div class="pill"><span class="dot" style="background:${accentFor(g.series)}"></span>${seriesName(g.series)} · ${g.game}</div>
-          <h3>${escapeHtml(g.title)}</h3>
-          <div class="meta"><span>${g.type}</span><span>${g.time}</span></div>
-          <p style="color:var(--muted);margin:0">${escapeHtml(g.summary)}</p>
-          <div class="actions"><a class="btn" href="#/guide/${g.id}">Open</a></div>
-        `;
-        col.appendChild(card); list.appendChild(col);
-      });
-    }
-
-    function accentFor(seriesId){ return DATA.series.find(s=>s.id===seriesId)?.accent || '#64748b'; }
-    function seriesName(seriesId){ return DATA.series.find(s=>s.id===seriesId)?.name || 'Series'; }
-
-    // --- Render a single guide ---
-    function renderGuide(id){
-      const g = DATA.guides.find(x=>x.id===id);
-      const article = document.getElementById('guideArticle');
-      if(!g){ article.innerHTML = '<h1>Not found</h1>'; return; }
-      article.innerHTML = `
-        <div class="pill"><span class="dot" style="background:${accentFor(g.series)}"></span>${seriesName(g.series)} · ${g.game} · ${g.type}</div>
-        ${g.content}
-        <div class="callout"><strong>Next Steps:</strong> Add maps/images, spoiler toggles, and video embeds from your channel.</div>
-      `;
-
-      // Build simple TOC from h2 elements
-      const tocEl = document.getElementById('tocCurrent'); tocEl.innerHTML = '';
-      article.querySelectorAll('h2').forEach(h=>{
-        const id = h.id || h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-');
-        h.id = id; const a = document.createElement('a'); a.href = `#${id}`; a.textContent = h.textContent; tocEl.appendChild(a);
-      });
-
-      // Related (same series/game)
-      const related = DATA.guides.filter(x=>x.series===g.series && x.id!==g.id).slice(0,6);
-      const relEl = document.getElementById('relatedList'); relEl.innerHTML='';
-      related.forEach(r=>{ const a=document.createElement('a'); a.href = `#/guide/${r.id}`; a.textContent = `${r.game}: ${r.title}`; relEl.appendChild(a); });
-    }
-
-    // --- Updates feed ---
-    function renderUpdates(){
-      const feed = document.getElementById('updatesFeed'); feed.innerHTML='';
-      const sorted = [...DATA.updates].sort((a,b)=> b.date.localeCompare(a.date));
-      sorted.forEach(u=>{
-        const col = document.createElement('div'); col.className='col-4';
-        const card = document.createElement('div'); card.className='card pad';
-        card.innerHTML = `
-          <div class="pill"><span class="dot" style="background:${accentFor(u.series)}"></span>${seriesName(u.series)} · ${u.game}</div>
-          <h3 style="margin:.4rem 0 0">${escapeHtml(u.title)}</h3>
-          <div class="meta"><span>${u.version}</span><span>${new Date(u.date).toLocaleDateString()}</span></div>
-          <ul style="margin-top:8px">${u.notes.map(n=>`<li>${escapeHtml(n)}</li>`).join('')}</ul>
-        `;
-        col.appendChild(card); feed.appendChild(col);
-      });
-    }
-
-    // --- Home quick picks ---
-    function renderQuick(){
-      const grid = document.getElementById('quickGrid'); grid.innerHTML='';
-      const picks = DATA.guides.slice(0,6);
-      picks.forEach(g=>{
-        const col = document.createElement('div'); col.className='col-4';
-        const card = document.createElement('div'); card.className='card game-card';
-        card.innerHTML = `
-          <div class="pill"><span class="dot" style="background:${accentFor(g.series)}"></span>${seriesName(g.series)} · ${g.game}</div>
-          <h3>${escapeHtml(g.title)}</h3>
-          <p style="color:var(--muted);margin:0">${escapeHtml(g.summary)}</p>
-          <div class="actions"><a class="btn" href="#/guide/${g.id}">Open</a></div>
-        `;
-        col.appendChild(card); grid.appendChild(col);
-      });
-    }
-
-    // --- Search binding ---
-    const searchInput = document.getElementById('searchInput');
-    let searchTimer; searchInput.addEventListener('input', ()=>{
-      clearTimeout(searchTimer);
-      searchTimer = setTimeout(()=>{
-        if(location.hash.startsWith('#/guides')) renderGuides();
-        else location.hash = '#/guides';
-      }, 200);
-    });
-
-    // --- Helpers ---
-    function escapeHtml(str){ return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[s])); }
-
-    // --- Init ---
-    document.getElementById('year').textContent = new Date().getFullYear();
-    renderSeries(); renderQuick(); route();
-
-    // Filter clicks
-    document.querySelectorAll('[data-filter-type]').forEach(a=>{
-      a.addEventListener('click', (e)=>{ e.preventDefault();
-        document.querySelectorAll('[data-filter-type]').forEach(x=>x.classList.remove('active'));
-        a.classList.add('active');
-        renderGuides({ type: a.getAttribute('data-filter-type') || null });
-      });
-    });
-  </script>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Boss&Blade. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
